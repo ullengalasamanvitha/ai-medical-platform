@@ -1,0 +1,389 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f9f9fc;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-weight: bold;
+    color: #6a5acd;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #6a5acd;
+    font-weight: 500;
+}
+
+main {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.subtitle {
+    margin-top: 15px;
+    color: #555;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: #777;
+    background-color: white;
+    border-top: 1px solid #ddd;
+}
+
+.card {
+    width: 350px;
+    margin: 120px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6a5acd;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5946c8;
+}
+
+.small-text {
+    font-size: 13px;
+    margin-top: 10px;
+}
+.dashboard-list {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.dashboard-list li {
+    margin: 8px 0;
+    color: #555;
+}
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.role {
+    margin-right: 20px;
+    font-weight: 500;
+    color: #555;
+}
+
+.logout {
+    text-decoration: none;
+    color: #6a5acd;
+    font-weight: 500;
+}
+
+.logout:hover {
+    text-decoration: underline;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+.admin-actions-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+
+.sub-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.danger {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+.note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #999;
+}
+.footer {
+    margin-top: 40px;
+    padding: 12px;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+.center {
+    text-align: center;
+}
+/* -------- Global -------- */
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background-color: #f6f7fb;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* -------- Top Navigation -------- */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 18px;
+    color: #4b3f72;
+}
+
+.nav-right a,
+.nav-right span {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #4b3f72;
+}
+
+/* -------- Cards -------- */
+.card {
+    background-color: #ffffff;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #4b3f72;
+}
+
+/* -------- Buttons -------- */
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #6c63ff;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #584ee6;
+}
+
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+
+.logout {
+    color: #c0392b;
+    font-weight: 500;
+}
+
+/* -------- Vertical Actions -------- */
+.admin-actions-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+/* -------- Forms -------- */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+}
+
+/* -------- Tables -------- */
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f0f1ff;
+    color: #333;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f9f9ff;
+}
+
+/* -------- Danger Button -------- */
+.danger {
+    background-color: #e74c3c;
+}
+
+.danger:hover {
+    background-color: #c0392b;
+}
+
+/* -------- Footer -------- */
+.footer {
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    color: #777;
+    margin-top: 40px;
+}
+
+.center {
+    text-align: center;
+}
+
+.sub-text {
+    font-size: 14px;
+    color: #777;
+}
+
+.note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #888;
+}
+/* -------- Table Layout -------- */
+.table-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.table-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4b3f72;
+}
+
+.data-table {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.data-table th {
+    background-color: #f0f1ff;
+    padding: 14px;
+}
+
+.data-table td {
+    padding: 14px;
+}
+
+.data-table tr:hover {
+    background-color: #f9f9ff;
+}
+
+/* -------- Buttons -------- */
+.btn {
+    padding: 8px 14px;
+    font-size: 13px;
+}
+
+.btn.small {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* -------- Dashboard Button Spacing -------- */
+.admin-actions-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* -------- Card Padding Fix -------- */
+.card {
+    padding: 26px;
+}
+
+/* -------- Success / Error Banners -------- */
+.alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.alert.success {
+    background-color: #eafaf1;
+    color: #2e7d32;
+}
+
+.alert.error {
+    background-color: #fdecea;
+    color: #c62828;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Users</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="table-container">
+    <h2 class="table-title">Registered Users</h2>
+
+    <table class="data-table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Action</th>
+        </tr>
+
+        {% for u in users %}
+        <tr>
+            <td>{{ u.name }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.role }}</td>
+            <td>{{ u.age }}</td>
+            <td>{{ u.gender }}</td>
+            <td>
+                {% if u.role not in ["admin", "patient"] %}
+                <a href="/admin/edit-user/{{ u.id }}" class="btn small">✏️ Edit</a>
+                <form method="post" action="/admin/delete-user" style="display:inline;">
+                    <input type="hidden" name="user_id" value="{{ u.id }}">
+                    <button type="submit" class="btn danger small">🗑 Delete</button>
+                </form>
+                {% else %}
+                —
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

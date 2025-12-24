@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <a href="/admin/users">Back</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="card">
+    <h2>Edit User</h2>
+
+    <form method="post">
+        <input type="text" name="name" value="{{ target.name }}" required>
+        <input type="number" name="age" value="{{ target.age }}" required>
+
+        <select name="gender" required>
+            <option value="Female" {% if target.gender=="Female" %}selected{% endif %}>Female</option>
+            <option value="Male" {% if target.gender=="Male" %}selected{% endif %}>Male</option>
+            <option value="Other" {% if target.gender=="Other" %}selected{% endif %}>Other</option>
+        </select>
+
+        <input type="email" name="email" value="{{ target.email }}" required>
+
+        <button type="submit" class="btn">Update</button>
+    </form>
+</div>
+
+</body>
+</html>

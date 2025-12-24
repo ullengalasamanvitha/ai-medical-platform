@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <a href="/patient/dashboard">Dashboard</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="card">
+    <h2>My Profile</h2>
+
+    <p><strong>Name:</strong> {{ patient.name }}</p>
+    <p><strong>Email:</strong> {{ patient.email }}</p>
+    <p><strong>Age:</strong> {{ patient.age }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Role:</strong> {{ patient.role }}</p>
+</div>
+
+</body>
+</html>

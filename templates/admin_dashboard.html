@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <span class="role">Admin</span>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="card">
+    <h2>Welcome, Admin</h2>
+    <p class="sub-text">Manage platform users and system access</p>
+
+    <div class="admin-actions-vertical">
+        <a href="/admin/create-user" class="btn">➕ Create User</a>
+        <a href="/admin/users" class="btn">👥 View All Users</a>
+
+    </div>
+</div>
+
+</body>
+</html>

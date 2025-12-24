@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ role|capitalize }} Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>{{ role|capitalize }} Login</h2>
+
+    {% if success %}
+    <p style="color: green; font-size: 14px;">
+        Registration successful. Please login to continue.
+    </p>
+    {% endif %}
+
+    {% if error %}
+    <p style="color: red; font-size: 14px;">
+        Invalid email or password. Please try again.
+    </p>
+    {% endif %}
+
+    <form method="post" action="/login">
+        <input type="hidden" name="role" value="{{ role }}">
+
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    {% if role == "patient" %}
+    <p class="small-text">
+        New patient? <a href="/register">Register here</a>
+    </p>
+    {% endif %}
+</div>
+
+</body>
+</html>

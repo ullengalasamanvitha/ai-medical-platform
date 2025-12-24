@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Manager Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <span class="role">Transaction Manager</span>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="card">
+    <h2>Welcome, Transaction Manager</h2>
+    <p class="sub-text">Manage payments, invoices, and financial records</p>
+
+    <div class="admin-actions-vertical">
+        <a href="/transaction/transactions" class="btn">📄 View Transactions</a>
+        <a href="/transaction/invoices" class="btn">🧾 View Invoices</a>
+
+    </div>
+
+    <p class="note">
+        ⚠️ Payment gateway integration is not enabled in this phase.
+    </p>
+</div>
+
+</body>
+</html>

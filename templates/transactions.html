@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transactions</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <a href="/transaction/dashboard">Dashboard</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="card">
+    <h2>Transactions</h2>
+
+    <table border="1" width="100%" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t.id }}</td>
+            <td>{{ t.patient }}</td>
+            <td>{{ t.amount }}</td>
+            <td>{{ t.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

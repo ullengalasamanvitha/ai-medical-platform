@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoices</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <a href="/transaction/dashboard">Dashboard</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<div class="card">
+    <h2>Invoices</h2>
+
+    <table border="1" width="100%" cellpadding="8">
+        <tr>
+            <th>Invoice ID</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+
+        {% for i in invoices %}
+        <tr>
+            <td>{{ i.invoice_id }}</td>
+            <td>{{ i.amount }}</td>
+            <td>{{ i.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
