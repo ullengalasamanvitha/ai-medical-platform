@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoices</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Invoices (Verified Payments)</h2>
+    <p>Generated from successfully verified UPI payments.</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Invoice ID</th>
+                <th>Patient</th>
+                <th>Doctor Fee</th>
+                <th>Platform Fee (15%)</th>
+                <th>Total Amount</th>
+                <th>UTR</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for payment, prescription, prediction, patient in invoices %}
+            <tr>
+                <td>INV-{{ payment.id }}</td>
+                <td>{{ patient.name }}</td>
+                <td>₹{{ payment.doctor_fee }}</td>
+                <td>₹{{ payment.final_amount - payment.doctor_fee }}</td>
+                <td>₹{{ payment.final_amount }}</td>
+                <td>{{ payment.utr_number }}</td>
+                <td>{{ payment.created_at.strftime('%d-%m-%Y') if payment.created_at else "N/A" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/transaction/dashboard" class="btn secondary">
+        ← Back to Dashboard
+    </a>
+</div>
+
+</body>
+</html>

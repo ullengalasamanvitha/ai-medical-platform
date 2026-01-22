@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Prediction Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- =========================
+         TOP NAV
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+
+        <div class="nav-right">
+            <a href="/patient/dashboard" class="btn small">Dashboard</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </header>
+
+    <!-- =========================
+         AI RESULT CARD
+    ========================== -->
+    <div class="card">
+        <h2>AI Prediction Result</h2>
+
+        <p class="sub-text"><strong>Symptoms Entered</strong></p>
+        <p>{{ symptoms }}</p>
+
+        <hr>
+
+        <p><strong>Possible Condition:</strong> {{ result.condition }}</p>
+        <p><strong>Risk Level:</strong> {{ result.risk }}</p>
+        <p><strong>Confidence:</strong> {{ result.confidence }}</p>
+        <p><strong>Recommendation:</strong> {{ result.recommendation }}</p>
+
+        {% if doctor_feedback %}
+        <div class="section-box">
+            <h3>Doctor Medical Advice</h3>
+            <p>{{ doctor_feedback }}</p>
+            <p class="sub-text">Provided by the consulting doctor</p>
+        </div>
+        {% endif %}
+
+        <p class="note">
+            This prediction is advisory only and does not replace professional medical consultation.
+        </p>
+
+        <div class="dashboard-actions">
+            <a href="/patient/ai-check" class="btn">
+                Analyze Again
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

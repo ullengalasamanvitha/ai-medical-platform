@@ -1,41 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>{{ role|capitalize }} Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
 
-<div class="card">
-    <h2>{{ role|capitalize }} Login</h2>
+<body class="auth-page">
 
-    {% if success %}
-    <p style="color: green; font-size: 14px;">
-        Registration successful. Please login to continue.
-    </p>
-    {% endif %}
+    <div class="card">
+        <h2>{{ role|capitalize }} Login</h2>
 
-    {% if error %}
-    <p style="color: red; font-size: 14px;">
-        Invalid email or password. Please try again.
-    </p>
-    {% endif %}
+        <p class="sub-text">
+            Please enter your credentials to continue.
+        </p>
 
-    <form method="post" action="/login">
-        <input type="hidden" name="role" value="{{ role }}">
+        {% if success %}
+        <div class="alert success">
+            Registration successful. Please login to continue.
+        </div>
+        {% endif %}
 
-        <input type="email" name="email" placeholder="Email address" required>
-        <input type="password" name="password" placeholder="Password" required>
+        {% if error %}
+        <div class="alert error">
+            Invalid email or password. Please try again.
+        </div>
+        {% endif %}
 
-        <button type="submit">Login</button>
-    </form>
+        <form method="post" action="/login">
+            <input type="hidden" name="role" value="{{ role }}">
 
-    {% if role == "patient" %}
-    <p class="small-text">
-        New patient? <a href="/register">Register here</a>
-    </p>
-    {% endif %}
-</div>
+            <label for="email">Email address</label>
+            <input id="email" type="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        {% if role == "patient" %}
+        <p class="note center">
+            New patient?
+            <a href="/register"><strong>Register here</strong></a>
+        </p>
+        {% endif %}
+    
+    </div>
 
 </body>
 </html>

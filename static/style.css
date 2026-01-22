@@ -1,389 +1,944 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f9f9fc;
-    color: #333;
+/* =================================================
+   GLOBAL RESET & BASE
+================================================= */
+* {
+    box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =================================================
+   TOP NAVIGATION
+================================================= */
+.top-nav,
 header {
     display: flex;
     justify-content: space-between;
-    padding: 15px 40px;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
+    align-items: center;
+    padding: 14px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .logo {
-    font-weight: bold;
-    color: #6a5acd;
-}
-
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #6a5acd;
-    font-weight: 500;
-}
-
-main {
-    text-align: center;
-    padding: 100px 20px;
-}
-
-.subtitle {
-    margin-top: 15px;
-    color: #555;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    color: #777;
-    background-color: white;
-    border-top: 1px solid #ddd;
-}
-
-.card {
-    width: 350px;
-    margin: 120px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
-    text-align: center;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #6a5acd;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #5946c8;
-}
-
-.small-text {
-    font-size: 13px;
-    margin-top: 10px;
-}
-.dashboard-list {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.dashboard-list li {
-    margin: 8px 0;
-    color: #555;
-}
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2563eb;
 }
 
 .nav-right {
     display: flex;
     align-items: center;
+    gap: 14px;
 }
 
-.role {
-    margin-right: 20px;
-    font-weight: 500;
-    color: #555;
+.nav-right a {
+    font-size: 14px;
 }
 
 .logout {
-    text-decoration: none;
-    color: #6a5acd;
+    color: #dc2626;
     font-weight: 500;
 }
 
-.logout:hover {
-    text-decoration: underline;
-}
-select {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-.admin-actions-vertical {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
+/* =================================================
+   INDEX PAGE (NO SCROLL)
+================================================= */
+.index-page {
+    height: 100vh;
+    overflow: hidden;
 }
 
-.full-width {
-    width: 100%;
-    text-align: center;
+/* =================================================
+   HERO (INDEX PAGE)
+================================================= */
+.hero {
+    height: calc(100vh - 70px);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 40px;
+
+    overflow: hidden;
 }
 
-.sub-text {
-    font-size: 14px;
-    color: #666;
+.hero-left h1 {
+    font-size: 32px;
     margin-bottom: 10px;
 }
-.danger {
-    background-color: #c0392b;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    cursor: pointer;
-}
-.note {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #999;
-}
-.footer {
-    margin-top: 40px;
-    padding: 12px;
-    font-size: 12px;
-    color: #777;
-    text-align: center;
-}
-.center {
-    text-align: center;
-}
-/* -------- Global -------- */
-body {
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    background-color: #f6f7fb;
-    margin: 0;
-    padding: 0;
+
+.hero-left .subtitle {
+    font-size: 15px;
+    color: #6b7280;
 }
 
-a {
-    text-decoration: none;
-}
-
-/* -------- Top Navigation -------- */
-.top-nav {
+.hero-right {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 30px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    justify-content: flex-end;
 }
 
-.logo {
-    font-weight: 600;
-    font-size: 18px;
-    color: #4b3f72;
+.hero-right img {
+    max-height: 300px;
+    width: auto;
+    object-fit: contain;
 }
 
-.nav-right a,
-.nav-right span {
-    margin-left: 15px;
-    font-size: 14px;
-    color: #4b3f72;
+/* =================================================
+   PAGE CONTENT (DASHBOARDS & LOGIN)
+================================================= */
+.dashboard-page,
+.auth-page {
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: 40px 20px;
 }
 
-/* -------- Cards -------- */
+/* =================================================
+   CARD (GLOBAL – DASHBOARDS & LOGIN)
+================================================= */
 .card {
+    max-width: 680px;
+    margin: 0 auto 40px;
+    padding: 28px;
+
     background-color: #ffffff;
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
 }
 
-.card h2 {
-    margin-top: 0;
-    color: #4b3f72;
-}
-
-/* -------- Buttons -------- */
-.btn {
-    display: inline-block;
-    padding: 10px 16px;
-    background-color: #6c63ff;
-    color: white;
-    border-radius: 6px;
+/* =================================================
+   FORMS
+================================================= */
+label {
+    display: block;
+    margin-bottom: 6px;
     font-size: 14px;
-    cursor: pointer;
-    border: none;
-}
-
-.btn:hover {
-    background-color: #584ee6;
-}
-
-.full-width {
-    width: 100%;
-    text-align: center;
-}
-
-.logout {
-    color: #c0392b;
     font-weight: 500;
 }
 
-/* -------- Vertical Actions -------- */
-.admin-actions-vertical {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 20px;
-}
-
-/* -------- Forms -------- */
-input, select {
+input,
+select,
+textarea {
     width: 100%;
-    padding: 10px;
+    padding: 10px 12px;
     margin-bottom: 14px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
 
-button {
-    width: 100%;
-}
-
-/* -------- Tables -------- */
-table {
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th {
-    background-color: #f0f1ff;
-    color: #333;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-    background-color: #f9f9ff;
-}
-
-/* -------- Danger Button -------- */
-.danger {
-    background-color: #e74c3c;
-}
-
-.danger:hover {
-    background-color: #c0392b;
-}
-
-/* -------- Footer -------- */
-.footer {
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    color: #777;
-    margin-top: 40px;
-}
-
-.center {
-    text-align: center;
-}
-
-.sub-text {
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
     font-size: 14px;
-    color: #777;
 }
 
-.note {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #888;
-}
-/* -------- Table Layout -------- */
-.table-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
 }
 
-.table-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #4b3f72;
-}
-
-.data-table {
-    width: 100%;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.data-table th {
-    background-color: #f0f1ff;
-    padding: 14px;
-}
-
-.data-table td {
-    padding: 14px;
-}
-
-.data-table tr:hover {
-    background-color: #f9f9ff;
-}
-
-/* -------- Buttons -------- */
+/* =================================================
+   BUTTONS (GLOBAL)
+================================================= */
+button,
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 220px;
+    padding: 10px 18px;
+
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover,
+.btn:hover {
+    background-color: #1e40af;
+}
+
+.btn.small {
+    min-width: unset;
     padding: 8px 14px;
     font-size: 13px;
 }
 
-.btn.small {
-    padding: 6px 10px;
-    font-size: 12px;
+.danger {
+    background-color: #dc2626;
 }
 
-/* -------- Dashboard Button Spacing -------- */
-.admin-actions-vertical {
+.danger:hover {
+    background-color: #b91c1c;
+}
+
+/* =================================================
+   DASHBOARD ACTIONS
+================================================= */
+.dashboard-actions {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.dashboard-actions .btn {
+    align-self: center;
+}
+
+/* =================================================
+   TABLES
+================================================= */
+.table-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table th {
+    background-color: #f3f4f6;
+}
+
+.data-table tr:hover {
+    background-color: #f9fafb;
+}
+
+/* =================================================
+   PAYMENT PAGE
+================================================= */
+.payment-box {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.payment-box img {
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.note {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* =================================================
+   FOOTER
+================================================= */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+
+    background-color: #ffffff;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* =================================================
+   RESPONSIVE
+================================================= */
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-right {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .top-nav {
+        padding: 14px 20px;
+    }
+}
+/* ===============================
+   GLOBAL TABLE ALIGNMENT FIX
+================================ */
+
+/* Force consistent column widths */
+.data-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+/* Ensure header & body cells align perfectly */
+.data-table th,
+.data-table td {
+    padding: 14px;
+    text-align: left;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+/* Prevent action buttons from stretching columns */
+.data-table td:last-child,
+.data-table th:last-child {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Fix button spacing inside tables */
+.data-table .btn {
+    min-width: unset;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* Keep table inside container clean */
+.table-container {
+    overflow-x: auto;
+}
+
+/* Remove any legacy border spacing issues */
+table {
+    border-spacing: 0;
+}
+/* ===============================
+   STATUS & MESSAGE COLORS
+================================ */
+
+/* Error messages */
+.error-text,
+.alert-error,
+.text-error {
+    color: #dc2626;          /* red */
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Success messages */
+.success-text,
+.alert-success,
+.text-success {
+    color: #16a34a;          /* green */
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Warning / info */
+.warning-text {
+    color: #d97706;          /* amber */
+    font-size: 14px;
+}
+
+/* Payment status helpers */
+.payment-success {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.payment-failed {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.payment-pending {
+    color: #d97706;
+    font-weight: 600;
+}
+.note {
+    color: #92400e;
+    background: #fffbeb;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
     margin-top: 20px;
 }
+/* ===============================
+   FORCE ERROR & SUCCESS COLORS
+================================ */
 
-/* -------- Card Padding Fix -------- */
-.card {
-    padding: 26px;
+/* Generic error text */
+.error,
+.text-error {
+    color: #dc2626 !important;   /* RED */
+    font-size: 14px;
+    font-weight: 500;
 }
 
-/* -------- Success / Error Banners -------- */
-.alert {
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    margin-bottom: 15px;
+/* Generic success text */
+.success,
+.text-success {
+    color: #16a34a !important;   /* GREEN */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Alert boxes (already used in dashboards) */
+.alert.error {
+    background-color: #fef2f2;
+    color: #991b1b !important;
+    border: 1px solid #fecaca;
 }
 
 .alert.success {
-    background-color: #eafaf1;
-    color: #2e7d32;
+    background-color: #ecfdf5;
+    color: #065f46 !important;
+    border: 1px solid #bbf7d0;
 }
 
+/* Payment status text */
+.payment-success {
+    color: #16a34a !important;
+    font-weight: 600;
+}
+
+.payment-failed {
+    color: #dc2626 !important;
+    font-weight: 600;
+}
+/* ===============================
+   FORCE AUTH ALERT COLORS
+   (FINAL OVERRIDE)
+================================ */
+
+.alert {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ERROR (RED) */
 .alert.error {
-    background-color: #fdecea;
-    color: #c62828;
+    color: #991b1b !important;
+    background-color: #fef2f2 !important;
+    border: 1px solid #fecaca !important;
+}
+
+/* SUCCESS (GREEN) */
+.alert.success {
+    color: #065f46 !important;
+    background-color: #ecfdf5 !important;
+    border: 1px solid #bbf7d0 !important;
+}
+/* --- Purple Theme Override --- */
+button,
+.btn,
+input[type="submit"] {
+    background-color: #4B006E;
+    border-color: #4B006E;
+    color: white;
+}
+
+button:hover,
+.btn:hover,
+input[type="submit"]:hover {
+    background-color: #3A0057;
+    border-color: #3A0057;
+}
+
+a.btn {
+    background-color: #4B006E;
+    border-color: #4B006E;
+    color: white !important;
+}
+
+a.btn:hover {
+    background-color: #3A0057;
+    border-color: #3A0057;
+}
+
+.highlight,
+.text-primary {
+    color: #4B006E !important;
+}
+
+.card-header,
+.table thead {
+    background-color: #4B006E;
+    color: white;
+}
+/* ============================= */
+/* Global subtle PURPLE background */
+/* ============================= */
+body {
+    background-color: #b892c8 !important;
+}
+
+/* ============================= */
+/* Buttons – Royal Purple */
+/* ============================= */
+
+button,
+input[type="submit"],
+.btn,
+.button {
+    background-color: #4B006E !important;
+    border-color: #4B006E !important;
+    color: #ffffff !important;
+}
+
+/* Button hover (slightly lighter, still subtle) */
+button:hover,
+input[type="submit"]:hover,
+.btn:hover,
+.button:hover {
+    background-color: #5a0f85 !important;
+}
+
+/* ============================= */
+/* Links (optional, subtle match) */
+/* ============================= */
+
+a {
+    color: #4B006E;
+}
+
+a:hover {
+    color: #5a0f85;
+}
+/* Royal Purple Theme */
+:root {
+  --royal-purple: #4B006E;
+  --royal-purple-dark: #3a0056;
+  --royal-purple-light-bg: #b894c9; /* subtle purple background */
+}
+/* Header title */
+header h1,
+.navbar-brand,
+.logo,
+.site-title {
+  color: var(--royal-purple) !important;
+  font-weight: 700;
+}
+/* Hero / main heading */
+.hero h1,
+.hero-title,
+.main-title {
+  color: #1e1e1e; /* strong readable dark */
+  font-weight: 700;
+}
+
+/* Hero subtitle / description */
+.hero p,
+.hero-subtitle,
+.main-description {
+  color: #2f2f2f;
+  font-weight: 500;
+}
+/* Main page background */
+body,
+.main-container,
+.hero-section {
+  background-color: var(--royal-purple-light-bg);
+}
+/* Footer */
+footer {
+  background-color: var(--royal-purple);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Footer text */
+footer p,
+footer span,
+footer a {
+  color: #ffffff;
+  opacity: 0.95;
+}
+
+/* Footer links hover */
+footer a:hover {
+  text-decoration: underline;
+}
+/* Buttons */
+button,
+.btn {
+  background-color: var(--royal-purple) !important;
+  border-color: var(--royal-purple) !important;
+  color: #ffffff !important;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--royal-purple-dark) !important;
+}
+:root {
+  --burgundy-main: #6b1f3b;      /* strong burgundy */
+  --burgundy-light: #8b3a57;     /* softer but visible */
+}
+/* Main hero heading */
+.hero h1,
+.hero-title,
+.main-title {
+  color: var(--burgundy-main) !important;
+  font-weight: 800;
+}
+/* Hero subtitle */
+.hero p,
+.hero-subtitle,
+.main-description {
+  color: var(--burgundy-light) !important;
+  font-weight: 500;
+}
+/* Fix admin dashboard button layout */
+.admin-actions,
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 16px;                /* ⬅ space between buttons */
+  justify-content: center;
+  margin-top: 24px;
+}
+.admin-actions a,
+.dashboard-actions a,
+.admin-actions button,
+.dashboard-actions button {
+  width: 100%;
+  text-align: center;
+  padding: 12px 16px;
+  white-space: nowrap;      /* prevents text wrap overlap */
+}
+@media (max-width: 600px) {
+  .admin-actions,
+  .dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===============================
+   ADMIN DASHBOARD BUTTON FIX
+   (TARGET BY URL + STRUCTURE)
+   =============================== */
+
+/* Only Admin Dashboard */
+body:has(a[href="/admin/dashboard"]) .card a,
+body:has(a[href="/admin/dashboard"]) .card button {
+  display: inline-block;
+  width: 48%;
+  margin: 10px 1%;
+  text-align: center;
+}
+
+/* Force proper row spacing */
+body:has(a[href="/admin/dashboard"]) .card {
+  max-width: 600px;
+  padding: 28px;
+}
+/* Admin dashboard button layout fix */
+.admin-dashboard .two-column {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.admin-dashboard .section-box {
+    flex: 1;
+}
+
+.admin-dashboard .admin-actions-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+/* Doctor AI Cases – fix action buttons overflow */
+.doctor-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 220px;
+}
+
+.doctor-actions form {
+    width: 100%;
+}
+
+.doctor-actions input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn.full-width {
+    width: 100%;
+}
+/* FIX hidden buttons inside table cells */
+.data-table td {
+    overflow: visible !important;
+    vertical-align: top;
+}
+/* Doctor AI actions fix */
+.doctor-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px;
+}
+
+.doctor-actions button,
+.doctor-actions .btn {
+    display: block !important;
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.alert.error {
+    background: #ffe5e5;
+    color: #8b0000;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+/* ===============================
+   TRANSACTION PAGE BUTTON FIX
+   =============================== */
+
+.table-container td {
+    vertical-align: middle;
+}
+
+/* Force action column to stay inside */
+.table-container td:last-child {
+    width: 25%;
+    max-width: 25%;
+    overflow: hidden;
+}
+
+/* Stack actions properly */
+.txn-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;   /* IMPORTANT */
+}
+
+/* Prevent input overflow */
+.txn-actions input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Buttons stay inside */
+.txn-actions button {
+    width: 100%;
+    box-sizing: border-box;
+}
+/* ===== TRANSACTION ACTION COLUMN FIX ===== */
+
+.data-table {
+    table-layout: fixed;
+}
+
+.action-cell {
+    width: 25%;
+    text-align: center;
+}
+
+.txn-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.txn-actions form {
+    width: 100%;
+}
+
+.txn-actions input,
+.txn-actions button {
+    width: 100%;
+    box-sizing: border-box;
+}
+/* ===== FINAL TABLE ACTION FIX (DO NOT MODIFY) ===== */
+
+.data-table {
+    table-layout: fixed;
+}
+
+.data-table td,
+.data-table th {
+    overflow: hidden;
+}
+
+.data-table td input[type="text"] {
+    width: 120px;        /* THIS IS THE KEY */
+    max-width: 120px;
+}
+
+.data-table td button {
+    white-space: nowrap;
+}
+/* ===== TRANSACTION ACTION COLUMN FIX ===== */
+
+.action-cell {
+    text-align: center;
+}
+
+.action-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.action-column form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-column input[type="text"] {
+    width: 120px;
+}
+/* TRANSACTION ACTION FIX */
+
+.action-cell {
+    width: 260px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.utr-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.utr-form input {
+    width: 140px;
+    padding: 6px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.success-text {
+    color: green;
+    font-weight: 600;
+    margin-top: 6px;
+}
+.site-footer {
+    background-color: #f5f6f7;
+    padding: 20px 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    margin: 0 8px;
+    text-decoration: none;
+    color: #385898;
+    white-space: nowrap;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    font-size: 12px;
+    color: #777;
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-footer {
+    margin-top: auto;
+}
+.site-footer {
+    background-color: #f5f6f7;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    margin-top: 40px;
+}
+
+.footer-links {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    margin: 0 8px;
+    text-decoration: none;
+    color: #385898;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    font-size: 12px;
+    color: #777;
+}
+.policy-header {
+    background-color: #f5f6f7;
+    padding: 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+.policy-header h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.policy-content {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.policy-content h3 {
+    margin-top: 25px;
 }

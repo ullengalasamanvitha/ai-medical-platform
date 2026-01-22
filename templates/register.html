@@ -1,42 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Patient Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
 
-<header class="top-nav">
-    <div class="logo">AI Medical Platform</div>
-</header>
+<body class="auth-page">
 
-<div class="card">
-    <h2>Patient Registration</h2>
+    <!-- =========================
+         TOP NAV
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+    </header>
 
-    <form method="post" action="/register">
+    <!-- =========================
+         REGISTRATION CARD
+    ========================== -->
+    <div class="card">
+        <h2>Patient Registration</h2>
 
-        <input type="text" name="name" placeholder="Full Name" required>
+        <p class="sub-text">
+            Create your account to access AI-assisted medical consultation.
+        </p>
 
-        <input type="number" name="age" placeholder="Age" min="1" required>
+        <form method="post" action="/register">
 
-        <select name="gender" required>
-            <option value="" disabled selected>Select Gender</option>
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-            <option value="Other">Other</option>
-        </select>
+            <label for="name">Full Name</label>
+            <input id="name" type="text" name="name" required>
 
-        <input type="email" name="email" placeholder="Email address" required>
+            <label for="age">Age</label>
+            <input id="age" type="number" name="age" min="1" required>
 
-        <input type="password" name="password" placeholder="Password" required>
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+            </select>
 
-        <button type="submit">Register</button>
-    </form>
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email" required>
 
-    <p class="small-text">
-        Already registered? <a href="/login?role=patient">Login here</a>
-    </p>
-</div>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+
+        <p class="note center">
+            Already registered?
+            <a href="/login?role=patient"><strong>Login here</strong></a>
+        </p>
+        
+    </div>
 
 </body>
 </html>

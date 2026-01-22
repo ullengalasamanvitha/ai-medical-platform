@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Feedback</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-page">
+
+<header class="top-nav">
+    <div class="logo">AI Medical Platform</div>
+    <div class="nav-right">
+        <span class="role">Doctor</span>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</header>
+
+<main>
+
+    <div class="card">
+        <h2>Medical Feedback Panel</h2>
+        <p class="sub-text">
+            Review AI accuracy and provide patient-specific medical advice.
+        </p>
+
+        {% if request.query_params.get('success') %}
+        <div class="alert success">
+            ✔ Action completed successfully
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- GRID START -->
+    <div class="two-column">
+
+        <!-- AI FEEDBACK CARD -->
+        <div class="card">
+            <h3>🤖 AI Accuracy Feedback</h3>
+            <p class="sub-text">
+                Visible only to the Admin. Used to improve AI predictions.
+            </p>
+
+            <form method="post" action="/doctor/ai-feedback">
+                <label>Your Feedback</label>
+                <textarea
+                    name="feedback"
+                    rows="6"
+                    placeholder="Example: AI overestimates risk for mild symptoms..."
+                    required></textarea>
+
+                <div style="margin-top: 15px;">
+                    <button type="submit" class="btn">
+                        Submit AI Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- PATIENT ADVICE CARD -->
+        <div class="card">
+            <h3>🩺 Patient Medical Advice</h3>
+            <p class="sub-text">
+                Sent directly to the patient. Not visible to Admin.
+            </p>
+
+            <form method="post" action="/doctor/patient-remark">
+                <label>Select Patient</label>
+                <select name="patient_id" required>
+                    {% for p in patients %}
+                        <option value="{{ p.id }}">{{ p.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label style="margin-top: 12px;">Medical Advice</label>
+                <textarea
+                    name="remark"
+                    rows="6"
+                    placeholder="Example: Avoid heavy physical activity..."
+                    required></textarea>
+
+                <div style="margin-top: 15px;">
+                    <button type="submit" class="btn">
+                        Send Advice
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- GRID END -->
+
+    <div style="text-align:center; margin: 30px 0;">
+        <a href="/doctor/dashboard" class="btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- =========================
+         TOP NAV
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+
+        <div class="nav-right">
+            <span class="role">Patient</span>
+            <a href="/patient/dashboard" class="btn small">Dashboard</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </header>
+
+    <!-- =========================
+         PAYMENT CARD
+    ========================== -->
+    <div class="card">
+
+        <h2>{{ message }}</h2>
+
+        {% if payment %}
+
+        <p class="sub-text">
+            Please complete the payment as instructed below.
+        </p>
+
+        <p><strong>Amount to Pay:</strong> ₹{{ payment.final_amount }}</p>
+
+        <!-- PAYMENT DETAILS -->
+        <div class="payment-box">
+            <img src="/static/upi_qr.png" alt="UPI QR Code">
+            <p class="sub-text">
+                UPI ID: <strong>clinic@upi</strong>
+            </p>
+        </div>
+
+        {% if payment and payment.status == "SUGGESTED" %}
+        <div class="info-box warning">
+            Please pay the exact amount shown and submit the UTR after payment.
+        </div>
+        {% endif %}
+        {% if error == "utr_exists" %}
+        <div class="alert error">
+            ❌ This UTR has already been used. Please enter a valid UTR.
+        </div>
+        {% elif error == "utr_mismatch" %}
+        <div class="alert error">
+            ❌ UTR does not match the payment screenshot. Please check again.
+        </div>
+        {% endif %}
+
+        <!-- UTR SUBMISSION -->
+        {% if payment.status == "SUGGESTED" %}
+        <div class="section-box">
+
+            <h3>Submit UTR Details</h3>
+
+            <form method="post" action="/patient/submit-utr" enctype="multipart/form-data">
+                <input type="hidden" name="payment_id" value="{{ payment.id }}">
+
+                <label for="utr">UTR Number</label>
+                <input id="utr" type="text" name="utr_number" required>
+
+                <label for="screenshot">Payment Screenshot (optional)</label>
+                <input id="screenshot" type="file" name="screenshot">
+
+                <button type="submit" class="btn">
+                    Submit UTR
+                </button>
+            </form>
+
+        </div>
+        {% endif %}
+
+        <!-- PAYMENT STATUS MESSAGES -->
+        {% if payment.status == "PENDING" %}
+            <div class="alert">
+                Payment verification is in progress.
+            </div>
+        {% endif %}
+
+        {% if payment.status == "SUCCESS" %}
+            <div class="alert success">
+                Payment successful.
+            </div>
+        {% endif %}
+
+        {% if payment.status == "FAILED" %}
+            <div class="alert error">
+                Payment verification failed. Please contact support.
+            </div>
+        {% endif %}
+
+        {% endif %}
+    </div>
+
+</body>
+</html>

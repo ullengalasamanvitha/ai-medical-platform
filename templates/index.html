@@ -1,40 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>AI Medical Consultancy & Virtual Doctor Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
 
-<header>
-    <div class="logo">AI Medical Platform</div>
-    <nav>
-        <a href="/login?role=patient">Patient</a>
-        <a href="/login?role=doctor">Doctor</a>
-        <a href="/login?role=admin">Admin</a>
-        <a href="/login?role=transaction">Transaction Manager</a>
-    </nav>
-</header>
+<body class="index-page">
 
-<main>
-    <h1>AI Medical Consultancy & Virtual Doctor Platform</h1>
-    <p class="subtitle">
-        Intelligent, AI-assisted healthcare support for early-stage medical guidance.
-    </p>
-</main>
+    <!-- =========================
+         TOP NAVIGATION
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
 
-<footer>
-    <p>
-        Disclaimer: This platform provides AI-assisted medical guidance for informational purposes only.
-        It does not replace professional medical consultation.
-    </p>
-</footer>
-<footer class="footer">
-    <p>
-        ⚠️ Medical Disclaimer: This platform provides advisory information only and
-        does not replace professional medical consultation or diagnosis.
-    </p>
-</footer>
+        <div class="nav-right">
+            <a href="/login?role=patient" class="btn small">Patient</a>
+            <a href="/login?role=doctor" class="btn small">Doctor</a>
+            <a href="/login?role=admin" class="btn small">Admin</a>
+            <a href="/login?role=transaction" class="btn small">Transaction</a>
+        </div>
+    </header>
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+    <main class="hero">
+        <div class="hero-left">
+            <h1>AI Medical Consultancy & Virtual Doctor Platform</h1>
+            <p class="subtitle">
+                Intelligent, AI-assisted healthcare support for early-stage medical guidance.
+            </p>
+        </div>
+
+        <div class="hero-right">
+            <img src="/static/images/ai-doctor.png" alt="AI Doctor Illustration">
+        </div>
+    </main>
+
+    <!-- =========================
+         FOOTER / DISCLAIMER
+    ========================== -->
+    <!-- page content -->
+
+    <footer class="site-footer">
+    <div class="footer-links">
+        <a href="/about" target="_blank">About Us</a>
+        <a href="/contact" target="_blank">Contact Us</a>
+        <a href="/privacy" target="_blank">Privacy Policy</a>
+        <a href="/terms" target="_blank">Terms & Conditions</a>
+        <a href="/disclaimer" target="_blank">Medical Disclaimer</a>
+        <a href="/faq" target="_blank">FAQs</a>
+        <a href="/patient-guidelines" target="_blank">Patient Guidelines</a>
+        <a href="/doctor-guidelines" target="_blank">Doctor Guidelines</a>
+        <a href="/refund-policy" target="_blank">Refund & Cancellation</a>
+        <a href="/support" target="_blank">Help & Support</a>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 AI Medical Consultancy & Virtual Doctor Platform
+    </div>
+    </footer>
 
 </body>
 </html>
+

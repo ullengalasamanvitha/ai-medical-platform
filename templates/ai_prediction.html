@@ -1,20 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI Prediction</title>
+    <meta charset="UTF-8">
+    <title>AI Symptom Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
 
-<div class="card">
-    <h2>AI Medical Prediction</h2>
-    <p>
-        This page will display AI-based disease prediction and recommendations.
-    </p>
-    <p class="small-text">
-        (AI/ML integration will be added in later phases)
-    </p>
-</div>
+<body class="dashboard-page">
+
+    <!-- =========================
+         TOP NAV
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+
+        <div class="nav-right">
+            <a href="/patient/dashboard" class="btn small">Dashboard</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </header>
+
+    <!-- =========================
+         AI SYMPTOM CHECK CARD
+    ========================== -->
+    <div class="card">
+        <h2>AI Symptom Checker</h2>
+
+        <p class="sub-text">
+            Describe the symptoms you are experiencing.  
+            This AI tool provides advisory insights only.
+        </p>
+
+        <form method="post" action="/patient/ai-result">
+
+            <label for="symptoms">Describe your symptoms</label>
+            <textarea
+                id="symptoms"
+                name="symptoms"
+                rows="6"
+                placeholder="Example: Fever, headache, chest pain since 2 days"
+                required
+            ></textarea>
+
+            <button type="submit" class="btn">
+                Analyze Symptoms
+            </button>
+
+        </form>
+
+        <p class="note">
+            This tool does not replace professional medical consultation or diagnosis.
+        </p>
+    </div>
 
 </body>
 </html>

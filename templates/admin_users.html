@@ -4,7 +4,7 @@
     <title>All Users</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="dashboard-page">
 
 <header class="top-nav">
     <div class="logo">AI Medical Platform</div>
@@ -14,41 +14,58 @@
     </div>
 </header>
 
+<main>
+
 <div class="table-container">
     <h2 class="table-title">Registered Users</h2>
+    <p class="sub-text">List of all users registered on the platform.</p>
 
     <table class="data-table">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Action</th>
-        </tr>
+        <thead>
+            <tr>
+                <th style="width:18%">Name</th>
+                <th style="width:26%">Email</th>
+                <th style="width:14%">Role</th>
+                <th style="width:8%">Age</th>
+                <th style="width:12%">Gender</th>
+                <th style="width:22%; text-align:center;">Action</th>
+            </tr>
+        </thead>
 
+        <tbody>
         {% for u in users %}
         <tr>
             <td>{{ u.name }}</td>
             <td>{{ u.email }}</td>
-            <td>{{ u.role }}</td>
+            <td>{{ u.role|capitalize }}</td>
             <td>{{ u.age }}</td>
             <td>{{ u.gender }}</td>
-            <td>
+            <td style="text-align:center;">
                 {% if u.role not in ["admin", "patient"] %}
-                <a href="/admin/edit-user/{{ u.id }}" class="btn small">✏️ Edit</a>
-                <form method="post" action="/admin/delete-user" style="display:inline;">
-                    <input type="hidden" name="user_id" value="{{ u.id }}">
-                    <button type="submit" class="btn danger small">🗑 Delete</button>
-                </form>
+                    <a href="/admin/edit-user/{{ u.id }}" class="btn small">Edit</a>
+                    <form method="post" action="/admin/delete-user"
+                          style="display:inline-block; margin-left:6px;">
+                        <input type="hidden" name="user_id" value="{{ u.id }}">
+                        <button type="submit" class="btn danger small">
+                            Delete
+                        </button>
+                    </form>
                 {% else %}
-                —
+                    —
                 {% endif %}
             </td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
+
+    <div style="margin-top:25px;">
+        <a href="/admin/dashboard" class="btn secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
 </div>
 
+</main>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="admin-dashboard">
 
 <header class="top-nav">
     <div class="logo">AI Medical Platform</div>
@@ -14,16 +14,42 @@
     </div>
 </header>
 
-<div class="card">
-    <h2>Welcome, Admin</h2>
-    <p class="sub-text">Manage platform users and system access</p>
+<main>
 
-    <div class="admin-actions-vertical">
-        <a href="/admin/create-user" class="btn">➕ Create User</a>
-        <a href="/admin/users" class="btn">👥 View All Users</a>
+    <div class="card">
+        <h2>Welcome, Admin</h2>
+        <p class="sub-text">
+            Manage platform users, access control, and system insights.
+        </p>
+
+        <!-- ACTION GRID -->
+<div class="two-column" style="margin-top: 30px;">
+
+    <div class="section-box">
+        <div class="admin-actions-vertical">
+            <a href="/admin/create-user" class="btn">➕ Create User</a>
+            <a href="/admin/users" class="btn">👥 View All Users</a>
+        </div>
+    </div>
+
+    <div class="section-box">
+        <div class="admin-actions-vertical">
+            <a href="/admin/medical-feedback" class="btn">
+                🧠 View AI Accuracy Feedback
+            </a>
+            <a href="/admin/analytics" class="btn">
+                📈 View Analytics
+            </a>
+        </div>
+    </div>
+
+</div>
+<!-- END GRID -->
+
 
     </div>
-</div>
+
+</main>
 
 </body>
 </html>

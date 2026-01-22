@@ -4,8 +4,7 @@
     <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-
+<body class="dashboard-page">
 <header class="top-nav">
     <div class="logo">AI Medical Platform</div>
     <div class="nav-right">
@@ -16,13 +15,23 @@
 
 <div class="card">
     <h2>Welcome, Doctor</h2>
-    <p>Review AI-generated patient summaries and provide medical guidance.</p>
+    <p class="sub-text">
+        Review AI-generated patient summaries and provide medical guidance
+    </p>
 
-    <ul class="dashboard-list">
-        <li>View Patient Cases</li>
-        <li>Review AI Summaries</li>
-        <li>Submit Medical Feedback</li>
-    </ul>
+    <div class="admin-actions-vertical">
+        <a href="/doctor/ai-summaries" class="btn">
+            📋 View Patient AI Cases
+        </a>
+
+        <a href="/doctor/feedback" class="btn">
+            📝 Submit Medical Feedback
+        </a>
+    </div>
+
+    <p class="note">
+        ⚠️ AI predictions are assistive only and must be clinically verified.
+    </p>
 </div>
 
 </body>

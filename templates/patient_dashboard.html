@@ -1,32 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Patient Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
 
-<header class="top-nav">
-    <div class="logo">AI Medical Platform</div>
-    <div class="nav-right">
-        <span class="role">Patient</span>
-        <a href="/logout" class="logout">Logout</a>
-        <a href="/patient/profile" class="btn">My Profile</a>
+<body class="dashboard-page">
 
+    <!-- =========================
+         TOP NAV
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+
+        <div class="nav-right">
+            <span class="role">Patient</span>
+            <a href="/patient/profile" class="btn small">My Profile</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </header>
+
+    <!-- =========================
+         DASHBOARD CARD
+    ========================== -->
+    <div class="card">
+        <h2>Welcome, Patient</h2>
+        <p class="sub-text">
+            Access AI-based medical predictions and consultation services.
+        </p>
+
+        <div class="dashboard-actions">
+
+            <a href="/patient/ai-check" class="btn">
+                Enter Symptoms
+            </a>
+
+            <a href="/patient/ai-results" class="btn">
+                View AI Predictions
+            </a>
+
+            {% if prediction %}
+            <a href="/patient/payment-status/{{ prediction.id }}" class="btn">
+                Payment & Consultation Status
+            </a>
+            {% else %}
+            <button class="btn" disabled>
+                Payment & Consultation Status
+            </button>
+            {% endif %}
+
+            <button class="btn" disabled>
+                Book Doctor Consultation
+            </button>
+
+        </div>
     </div>
-</header>
-
-<div class="card">
-    <h2>Welcome, Patient</h2>
-    <p>Access AI-based medical predictions and consultation services.</p>
-
-    <ul class="dashboard-list">
-        <li>Enter Symptoms</li>
-        <li>View AI Predictions</li>
-        <li>Book Doctor Consultation</li>
-        <li>View Payment History</li>
-    </ul>
-</div>
 
 </body>
 </html>

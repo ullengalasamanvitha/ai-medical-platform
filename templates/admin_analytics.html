@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Analytics</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+
+    <h2>System Analytics</h2>
+
+    <div class="card">👥 Total Patients: <b>{{ total_patients }}</b></div>
+    <div class="card">🩺 Total Doctors: <b>{{ total_doctors }}</b></div>
+    <div class="card">🤖 AI Predictions Made: <b>{{ total_predictions }}</b></div>
+    <div class="card">📊 AI Feedback Entries: <b>{{ total_ai_feedbacks }}</b></div>
+
+    <br>
+    <a href="/admin/dashboard" class="btn">⬅ Back to Dashboard</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient AI Cases</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Patient AI Cases</h2>
+    <p>
+        Review AI-generated predictions for patients.
+        Medical feedback should be submitted from the dedicated feedback page.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Symptoms</th>
+                <th>AI Condition</th>
+                <th>Risk</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for prediction, patient, prescription, payment in predictions %}
+            <tr>
+                <td>{{ patient.name }}</td>
+                <td>{{ prediction.symptoms }}</td>
+                <td>{{ prediction.condition }}</td>
+                <td>{{ prediction.risk }}</td>
+                <td>{{ prediction.status }}</td>
+            <td>
+                <div class="doctor-actions">
+
+                    {% if prediction.status == "REVIEWED" %}
+                        <button class="btn full-width" disabled>
+                            Prescription Confirmed
+                        </button>
+                    {% else %}
+                        <form method="post" action="/doctor/confirm-prescription">
+                            <input type="hidden" name="prediction_id" value="{{ prediction.id }}">
+                            <button type="submit" class="btn full-width">
+                                Confirm Prescription
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    {% if not prescription %}
+                        <button class="btn full-width" disabled>
+                            Confirm Prescription First
+                        </button>
+
+                    {% elif payment %}
+                        <button class="btn full-width" disabled>
+                            Payment Already Suggested
+                        </button>
+
+                    {% else %}
+                        <form method="post" action="/doctor/suggest-payment">
+                            <input type="hidden" name="prescription_id" value="{{ prescription.id }}">
+                            <input
+                                type="number"
+                                name="doctor_fee"
+                                placeholder="Doctor Fee"
+                                required
+                            >
+                            <button type="submit" class="btn full-width">
+                                Suggest Payment
+                            </button>
+                        </form>
+                    {% endif %}
+
+                </div>
+            </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+
+    <a href="/doctor/feedback" class="btn">
+        📝 Go to Feedback Page
+    </a>
+
+    <a href="/doctor/dashboard" class="btn secondary">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -4,37 +4,95 @@
     <title>Transactions</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="dashboard-page">
 
 <header class="top-nav">
     <div class="logo">AI Medical Platform</div>
     <div class="nav-right">
-        <a href="/transaction/dashboard">Dashboard</a>
+        <a href="/transaction/dashboard" class="btn small">Dashboard</a>
         <a href="/logout" class="logout">Logout</a>
     </div>
 </header>
 
-<div class="card">
-    <h2>Transactions</h2>
+<main>
 
-    <table border="1" width="100%" cellpadding="8">
-        <tr>
-            <th>ID</th>
-            <th>Patient</th>
-            <th>Amount</th>
-            <th>Status</th>
-        </tr>
+<div class="table-container">
+    <h2 class="table-title">Transactions</h2>
+    <p class="sub-text">Review and verify pending payment transactions.</p>
 
-        {% for t in transactions %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width:10%">ID</th>
+                <th style="width:25%">Patient</th>
+                <th style="width:20%">Amount</th>
+                <th style="width:20%">Status</th>
+                <th style="width:25%; text-align:center;">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for payment, patient in payments %}
         <tr>
-            <td>{{ t.id }}</td>
-            <td>{{ t.patient }}</td>
-            <td>{{ t.amount }}</td>
-            <td>{{ t.status }}</td>
+            <td>{{ payment.id }}</td>
+            <td>{{ patient.name }}</td>
+            <td>₹{{ payment.final_amount }}</td>
+            <td>{{ payment.status }}</td>
+
+            <td class="action-cell">
+
+            {% if payment.status == "PENDING" %}
+
+                <!-- VERIFY UTR -->
+                <form method="post" action="/transaction/verify-payment" style="margin-top:8px;">
+                    <input type="hidden" name="payment_id" value="{{ payment.id }}">
+                    <input type="hidden" name="action" value="verify">
+
+                    <input type="text"
+                        name="utr"
+                        placeholder="Enter UTR"
+                        required>
+
+                    <button type="submit" class="btn small">Verify UTR</button>
+                </form>
+
+
+                {% if payment.utr_verified %}
+                    <div class="success-text">UTR Verified</div>
+
+                    <div class="action-buttons">
+                        <form method="post" action="/transaction/verify-payment">
+                            <input type="hidden" name="payment_id" value="{{ payment.id }}">
+                            <input type="hidden" name="action" value="approve">
+                            <button class="btn small">Approve</button>
+                        </form>
+
+                        <form method="post" action="/transaction/verify-payment">
+                            <input type="hidden" name="payment_id" value="{{ payment.id }}">
+                            <input type="hidden" name="action" value="reject">
+                            <button class="btn danger small">Reject</button>
+                        </form>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                —
+            {% endif %}
+
+            </td>
         </tr>
         {% endfor %}
+        </tbody>
+
     </table>
+
+    <div style="margin-top:25px;">
+        <a href="/transaction/dashboard" class="btn secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
 </div>
 
+</main>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pending Payments</title>
+</head>
+<body>
+    <h2>Pending Payments for Verification</h2>
+
+    {% if payments %}
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Patient</th>
+                <th>Doctor Fee</th>
+                <th>Final Amount</th>
+                <th>UTR</th>
+                <th>Screenshot</th>
+                <th>Action</th>
+            </tr>
+
+            {% for payment, prescription, patient in payments %}
+            <tr>
+                <td>{{ patient.name }}</td>
+                <td>₹{{ payment.doctor_fee }}</td>
+                <td>₹{{ payment.final_amount }}</td>
+                <td>{{ payment.utr_number }}</td>
+                <td>
+                    {% if payment.screenshot %}
+                        <a href="/{{ payment.screenshot }}" target="_blank">View</a>
+                    {% else %}
+                        Not uploaded
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="post" action="/transaction/verify-payment">
+                        <input type="hidden" name="payment_id" value="{{ payment.id }}">
+                        <button type="submit" name="action" value="approve">Approve</button>
+                        <button type="submit" name="action" value="reject">Reject</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No pending payments.</p>
+    {% endif %}
+</body>
+</html>

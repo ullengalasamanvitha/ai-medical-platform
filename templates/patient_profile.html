@@ -1,28 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>My Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
 
-<header class="top-nav">
-    <div class="logo">AI Medical Platform</div>
-    <div class="nav-right">
-        <a href="/patient/dashboard">Dashboard</a>
-        <a href="/logout" class="logout">Logout</a>
+<body class="dashboard-page">
+
+    <!-- =========================
+         TOP NAV
+    ========================== -->
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+
+        <div class="nav-right">
+            <a href="/patient/dashboard" class="btn small">Dashboard</a>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </header>
+
+    <!-- =========================
+         PROFILE CARD
+    ========================== -->
+    <div class="card">
+        <h2>My Profile</h2>
+
+        <p class="sub-text">
+            Personal information associated with your account.
+        </p>
+
+        <div class="section-box">
+            <p><strong>Name:</strong> {{ patient.name }}</p>
+            <p><strong>Email:</strong> {{ patient.email }}</p>
+            <p><strong>Age:</strong> {{ patient.age }}</p>
+            <p><strong>Gender:</strong> {{ patient.gender }}</p>
+            <p><strong>Role:</strong> {{ patient.role|capitalize }}</p>
+        </div>
     </div>
-</header>
-
-<div class="card">
-    <h2>My Profile</h2>
-
-    <p><strong>Name:</strong> {{ patient.name }}</p>
-    <p><strong>Email:</strong> {{ patient.email }}</p>
-    <p><strong>Age:</strong> {{ patient.age }}</p>
-    <p><strong>Gender:</strong> {{ patient.gender }}</p>
-    <p><strong>Role:</strong> {{ patient.role }}</p>
-</div>
 
 </body>
 </html>
