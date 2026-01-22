@@ -17,8 +17,6 @@ import io
 import pytesseract
 from PIL import Image
 import re
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
 from database import engine, SessionLocal
 from models import Base, User
 from models import *
