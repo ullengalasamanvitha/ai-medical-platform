@@ -21,6 +21,7 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 
 from database import engine, SessionLocal
 from models import Base, User
+from models import *
 Base.metadata.create_all(bind=engine)
 
 def analyze_symptoms_text(symptom_text: str):
