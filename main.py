@@ -27,14 +27,6 @@ from models import Base, User
 from models import *
 from sqlalchemy import text
 
-@app.on_event("startup")
-def update_payments_table():
-    with engine.connect() as conn:
-        conn.execute(text("ALTER TABLE payments ADD COLUMN IF NOT EXISTS screenshot TEXT"))
-        conn.execute(text("ALTER TABLE payments ADD COLUMN IF NOT EXISTS uploaded_at TIMESTAMP"))
-        conn.execute(text("ALTER TABLE payments ADD COLUMN IF NOT EXISTS utr_verified BOOLEAN DEFAULT FALSE"))
-        conn.commit()
-
 Base.metadata.create_all(bind=engine)
 
 def analyze_symptoms_text(symptom_text: str):
@@ -79,7 +71,13 @@ app = FastAPI(title="AI Medical Consultancy & Virtual Doctor Platform")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
-
+@app.on_event("startup")
+def update_payments_table():
+    with engine.connect() as conn:
+        conn.execute(text("ALTER TABLE payments ADD COLUMN IF NOT EXISTS screenshot TEXT"))
+        conn.execute(text("ALTER TABLE payments ADD COLUMN IF NOT EXISTS uploaded_at TIMESTAMP"))
+        conn.execute(text("ALTER TABLE payments ADD COLUMN IF NOT EXISTS utr_verified BOOLEAN DEFAULT FALSE"))
+        conn.commit()
 @app.get("/about")
 def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request, "title": "About Us"})
