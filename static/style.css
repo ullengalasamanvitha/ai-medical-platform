@@ -1,3 +1,15 @@
+/* GLOBAL PAGE BACKGROUND FIX */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #b48ac9;   /* your purple */
+    font-family: Arial, Helvetica, sans-serif;
+}
 /* =================================================
    GLOBAL RESET & BASE
 ================================================= */
@@ -941,4 +953,57 @@ body {
 
 .policy-content h3 {
     margin-top: 25px;
+}
+.thumb {
+    width: 90px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.thumb:hover {
+    transform: scale(1.8);
+}
+/* =========================
+   🔥 ABSOLUTE FINAL FIX
+   ========================= */
+
+/* Force purple background on the REAL page layer */
+html {
+    background: #b892c8 !important;
+    min-height: 100% !important;
+}
+
+body {
+    background: transparent !important;
+    min-height: 100% !important;
+}
+
+/* Ensure page sections don't create white blocks */
+.dashboard-page,
+.auth-page,
+.container,
+.table-container,
+main {
+    background: transparent !important;
+}
+/* =========================
+   FOOTER VISIBILITY FIX
+   ========================= */
+
+.site-footer,
+.footer {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    z-index: 10 !important;
+    margin-top: 40px !important;
+}
+
+/* Ensure footer text is visible on purple */
+.site-footer,
+.footer {
+    background-color: #f5f6f7 !important;
+    color: #333 !important;
 }

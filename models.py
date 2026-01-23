@@ -89,3 +89,6 @@ class Payment(Base):
     manager_utr = Column(String, nullable=True)
 
     utr_verified = Column(Boolean, default=False)  # ✅ correct
+    screenshot = Column(String, nullable=True)
+    uploaded_at = Column(DateTime, nullable=True)   # ✅ ADD
+    screenshot = Column(String, nullable=True)      # ✅ ADD

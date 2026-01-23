@@ -24,10 +24,11 @@
         <thead>
             <tr>
                 <th style="width:10%">ID</th>
-                <th style="width:25%">Patient</th>
-                <th style="width:20%">Amount</th>
-                <th style="width:20%">Status</th>
-                <th style="width:25%; text-align:center;">Action</th>
+                <th style="width:15%">Patient</th>
+                <th style="width:15%">Amount</th>
+                <th style="width:15%">Status</th>
+                <th style="width:20%">Screenshot</th>
+                <th style="width:35%; text-align:center;">Action</th>
             </tr>
         </thead>
 
@@ -38,6 +39,15 @@
             <td>{{ patient.name }}</td>
             <td>₹{{ payment.final_amount }}</td>
             <td>{{ payment.status }}</td>
+            <td style="text-align:center;">
+                {% if payment.screenshot %}
+                    <a href="/static/uploads/{{ payment.screenshot }}">
+                        <img src="/static/uploads/{{ payment.screenshot }}" class="thumb">
+                    </a>
+                {% else %}
+                    Not uploaded
+                {% endif %}
+            </td>
 
             <td class="action-cell">
 

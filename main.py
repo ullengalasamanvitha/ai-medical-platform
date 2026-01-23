@@ -15,6 +15,11 @@ os.makedirs("static/uploads", exist_ok=True)
 from fastapi import UploadFile, File
 import io
 import pytesseract
+import platform
+
+if platform.system() == "Windows":
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 from PIL import Image
 import re
 from database import engine, SessionLocal
@@ -399,15 +404,16 @@ async def submit_utr(
     exists = db.query(Payment).filter(Payment.utr == typed_utr).first()
     if exists:
         return RedirectResponse(
-        url=f"/patient/payment-status/{payment_id}?error=utr_exists",
-        status_code=302
-    )
-
-
-    # OCR checking
+            url=f"/patient/payment-status/{payment_id}?error=utr_exists",
+            status_code=302
+        )
     ocr_utr = None
+    contents = None
+
+    # Read screenshot ONCE and use for both OCR + saving
     if screenshot:
         contents = await screenshot.read()
+
         img = Image.open(io.BytesIO(contents))
         ocr_text = pytesseract.image_to_string(img)
 
@@ -417,30 +423,44 @@ async def submit_utr(
 
     if ocr_utr and ocr_utr != typed_utr:
         return RedirectResponse(
-        url=f"/patient/payment-status/{payment_id}?error=utr_mismatch",
-        status_code=302
-    )
+            url=f"/patient/payment-status/{payment_id}?error=utr_mismatch",
+            status_code=302
+        )
 
-    # Save payment
+    # Fetch payment
     payment = db.query(Payment).filter(Payment.id == payment_id).first()
     if not payment:
         raise HTTPException(status_code=404, detail="Payment request not found")
 
     payment.utr = typed_utr
     payment.status = "PENDING"
-    payment.uploaded_at = datetime.now()
 
-    # Save screenshot file
-    if screenshot:
+    # Always set upload time when UTR is submitted
+    if not payment.uploaded_at:
+        payment.uploaded_at = datetime.now()
+
+
+    # Save screenshot file and DB value
+    if contents:
         filename = f"utr_{payment_id}_{typed_utr}.png"
         save_path = os.path.join("static", "uploads", filename)
+
         with open(save_path, "wb") as f:
             f.write(contents)
+
         payment.screenshot = filename
 
     db.commit()
-    return RedirectResponse(f"/patient/payment-status/{payment.id}", status_code=302)
 
+    # get prediction id through prescription
+    prescription = db.query(Prescription).filter(
+        Prescription.id == payment.prescription_id
+    ).first()
+
+    return RedirectResponse(
+        f"/patient/payment-status/{prescription.prediction_id}",
+        status_code=302
+    )
 @app.get("/doctor/dashboard", response_class=HTMLResponse)
 def doctor_dashboard(request: Request, user=Depends(get_current_user)):
     if user["role"] != "doctor":
