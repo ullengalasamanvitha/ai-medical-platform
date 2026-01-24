@@ -5,7 +5,12 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<div class="container">
+    <header class="top-nav">
+        <div class="logo">AI Medical Platform</div>
+        <div class="nav-right">
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </header>
 
     <h2>System Analytics</h2>
 
@@ -14,8 +19,11 @@
     <div class="card">🤖 AI Predictions Made: <b>{{ total_predictions }}</b></div>
     <div class="card">📊 AI Feedback Entries: <b>{{ total_ai_feedbacks }}</b></div>
 
-    <br>
-    <a href="/admin/dashboard" class="btn">⬅ Back to Dashboard</a>
+    <div style="margin-top:25px;">
+        <a href="/admin/dashboard" class="btn secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
 
 </div>
 </body>
